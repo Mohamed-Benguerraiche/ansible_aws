@@ -20,12 +20,6 @@
       state: present
       enablerepo: epel
 
-  - name: Installation de Gatsby CLI
-    ansible.builtin.npm:
-      name: gatsby-cli
-      global: yes
-    delegate_to: 127.0.0.1
-
   - name: Création d'un répertoire
     ansible.builtin.shell: 
       cmd: mkdir /home/ec2-user/gatsby
