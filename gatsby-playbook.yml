@@ -2,12 +2,12 @@
   hosts: ec2
   become: true
   tasks:
-  - name: Ensure apache is at the latest version
+  - name: Installer d'apache
     ansible.builtin.yum:
       name: httpd
-      state: latest
+      state: present
 
-  - name: Compilateur et make
+  - name: Installer le compilateur et make
     ansible.builtin.yum:
       - name:
           - gcc-c++
