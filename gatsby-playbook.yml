@@ -1,21 +1,21 @@
 - name: ansible-playbook
-  hosts: ec2 #Liste des hôtes dans le fichier hosts
-  become: true #Elévation des privilèges
+  hosts: ec2
+  become: true
   tasks:
-  - name: Compilateur et make
-    ansible.builtin.yum:
-      - name:
-          - gcc-c++
-          - make
+    - name: Compilateur et make
+      ansible.builtin.yum:
+        - name:
+            - gcc-c++
+            - make
+          state: present
+
+    - name: Installer node et npm
+      ansible.builtin.yum:
+        name: nodejs
         state: present
+        enablerepo: epel
 
-  - name: Installer node et npm
-    ansible.builtin.yum:
-      name: nodejs
-      state: present
-      enablerepo: epel
-
-  - name: Installer Gatsby
-    ansible.builtin.npm:
-      name: gatsby-cli
-      global: yes
+    - name: Installer Gatsby
+      ansible.builtin.npm:
+        name: gatsby-cli
+        global: yes
