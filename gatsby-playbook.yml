@@ -9,10 +9,10 @@
 
   - name: Installer le compilateur et make
     ansible.builtin.yum:
-      - name:
-          - gcc-c++
-          - make
-        state: present
+      name:
+        - gcc-c++
+        - make
+      state: present
 
   - name: Installer node et npm
     ansible.builtin.yum:
