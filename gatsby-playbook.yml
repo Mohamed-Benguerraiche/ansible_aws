@@ -28,15 +28,12 @@
   - name: Création d'un répertoire
     ansible.builtin.shell: 
     cmd: mkdir /home/ec2-user/gatsby
-    delegate_to: 127.0.0.1
 
   - name: Clonage du repository with separate git directory
     ansible.builtin.git:
       repo: https://github.com/Mohamed-Benguerraiche/gatsby-starter-default.git
       dest: /home/ec2-user/gatsby
-    delegate_to: 127.0.0.1
 
   - name: Création d'un répertoire
     ansible.builtin.shell: 
     cmd: npm install
-    delegate_to: 127.0.0.1
