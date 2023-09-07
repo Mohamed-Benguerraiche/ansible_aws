@@ -1,1 +1,0 @@
-ansible -i hosts.ini -u ec2-user --private-key=ansible_vincent.pem -m ping instances

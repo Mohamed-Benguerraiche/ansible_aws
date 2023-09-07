@@ -2,10 +2,9 @@
   hosts: ec2 #Liste des hôtes dans le fichier hosts
   become: true #Elévation des privilèges
   tasks:
-    - name: Example from an Ansible Playbook
-      ansible.builtin.ping:
+  - name: Example from an Ansible Playbook
+    ansible.builtin.ping:
 
-    - name: Induce an exception to see what happens
-      ansible.builtin.ping:
-        data: crash
-      
+  - name: Induce an exception to see what happens
+    ansible.builtin.ping:
+      data: crash
