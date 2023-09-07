@@ -2,25 +2,42 @@
   hosts: ec2
   become: true
   tasks:
-  - name: Installer d'apache
+  - name: Installation d'apache
     ansible.builtin.yum:
       name: httpd
       state: present
 
-  - name: Installer le compilateur et make
+  - name: Installation du compilateur et make
     ansible.builtin.yum:
       name:
         - gcc-c++
         - make
       state: present
 
-  - name: Installer node et npm
+  - name: Installation de node et npm
     ansible.builtin.yum:
       name: nodejs
       state: present
       enablerepo: epel
 
-  - name: Installer Gatsby
+  - name: Installation de Gatsby CLI
     ansible.builtin.npm:
       name: gatsby-cli
       global: yes
+      delegate_to: 127.0.0.1
+
+  - name: Création d'un répertoire
+    ansible.builtin.shell: 
+    cmd: mkdir /home/ec2-user/gatsby
+    delegate_to: 127.0.0.1
+
+  - name: Clonage du repository with separate git directory
+    ansible.builtin.git:
+      repo: https://github.com/Mohamed-Benguerraiche/gatsby-starter-default.git
+      dest: /home/ec2-user/gatsby
+    delegate_to: 127.0.0.1
+
+  - name: Création d'un répertoire
+    ansible.builtin.shell: 
+    cmd: npm install
+    delegate_to: 127.0.0.1
