@@ -24,7 +24,7 @@
     ansible.builtin.npm:
       name: gatsby-cli
       global: yes
-      delegate_to: 127.0.0.1
+    delegate_to: 127.0.0.1
 
   - name: Création d'un répertoire
     ansible.builtin.shell: 
