@@ -2,20 +2,20 @@
   hosts: ec2
   become: true
   tasks:
-    - name: Compilateur et make
-      ansible.builtin.yum:
-        - name:
-            - gcc-c++
-            - make
-          state: present
-
-    - name: Installer node et npm
-      ansible.builtin.yum:
-        name: nodejs
+  - name: Compilateur et make
+    ansible.builtin.yum:
+      - name:
+          - gcc-c++
+          - make
         state: present
-        enablerepo: epel
 
-    - name: Installer Gatsby
-      ansible.builtin.npm:
-        name: gatsby-cli
-        global: yes
+  - name: Installer node et npm
+    ansible.builtin.yum:
+      name: nodejs
+      state: present
+      enablerepo: epel
+
+  - name: Installer Gatsby
+    ansible.builtin.npm:
+      name: gatsby-cli
+      global: yes
