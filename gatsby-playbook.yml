@@ -20,9 +20,9 @@
       state: present
       enablerepo: epel
 
-  - name: Change di
+  - name: Change directory
     shell:
       cmd: ansible-playbook gatsby-playbook.yml -i hosts.ini
-      chdir: ansible_aws/
+      chdir: /home/ec2-user/
     delegate_to: 127.0.0.1
     run_once: yes
