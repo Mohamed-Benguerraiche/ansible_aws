@@ -1,7 +1,14 @@
 - name: gatsby-playbook
   hosts: ec2
-  become: true
+  become: yes
   tasks:
+
+  - name: Effacement répertoire Gatsby
+    shell: 
+      cmd: sudo rm -rf /home/ec2-user/gatsby
+    delegate_to: 127.0.0.1
+    run_once: yes
+
   - name: Installation d'apache
     yum:
       name: httpd
