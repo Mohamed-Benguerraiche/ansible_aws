@@ -49,7 +49,7 @@
 
   - name: Changement de dossier Npm install
     shell: 
-      cmd: cd /home/ec2-user/gatsby npm install
+      cmd: cd /home/ec2-user/gatsby && npm install
     delegate_to: 127.0.0.1
     run_once: yes
 
