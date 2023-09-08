@@ -19,6 +19,6 @@
     dest: /home/ec2-user/gatsby
 
 - name: Installation du projet
-  shell: 
-    cmd: npm install
-    cmd: gatsby build
+    shell: 
+      cmd: npm install
+      cmd: gatsby build
