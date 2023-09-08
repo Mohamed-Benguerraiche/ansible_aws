@@ -47,11 +47,13 @@
     delegate_to: 127.0.0.1
     run_once: yes
 
-  - name: Changement de dossier Npm install
-    shell: 
-      cmd: cd /home/ec2-user/gatsby && npm install
+  - name: Installation des dépendances avec npm
+    shell: npm install
+    args:
+      chdir: /home/ec2-user/gatsby
     delegate_to: 127.0.0.1
     run_once: yes
+
 
   - name: Build du projet
     shell: 
