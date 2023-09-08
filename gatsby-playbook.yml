@@ -43,14 +43,14 @@
   - name: Clonage du repository with separate git directory
     git:
       repo: https://github.com/Mohamed-Benguerraiche/gatsby-starter-default.git
-      dest: /home/ec2-user/gatsby
+      dest: /home/ec2-user/gatsby/
     delegate_to: 127.0.0.1
     run_once: yes
 
   - name: Npm install
     shell: 
       cmd: npm install
-      chdir: chdir /home/ec2-user/gatsby
+      chdir: chdir /home/ec2-user/gatsby/
     delegate_to: 127.0.0.1
     run_once: yes
 
