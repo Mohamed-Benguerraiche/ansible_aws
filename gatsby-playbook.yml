@@ -57,5 +57,6 @@
   - name: Build du projet
     shell: 
       cmd: gatsby build
+      chdir: /home/ec2-user/gatsby/
     delegate_to: 127.0.0.1
     run_once: yes
