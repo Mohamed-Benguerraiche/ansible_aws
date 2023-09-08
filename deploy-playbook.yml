@@ -1,0 +1,24 @@
+- name: deploy-playbook
+- hosts: 127.0.0.1
+  connection: local
+  become: true
+  tasks:
+
+- name: Installation de Gatsby CLI
+  npm:
+    name: gatsby-cli
+    global: yes
+
+- name: Création d'un répertoire
+  shell: 
+    cmd: mkdir /home/ec2-user/gatsby/
+
+- name: Clonage du repository with separate git directory
+  git:
+    repo: https://github.com/Mohamed-Benguerraiche/gatsby-starter-default.git
+    dest: /home/ec2-user/gatsby
+
+- name: Installation du projet
+  shell: 
+    cmd: npm install
+    cmd: gatsby build

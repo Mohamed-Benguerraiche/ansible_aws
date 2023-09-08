@@ -1,37 +1,28 @@
-- name: ansible-playbook
+- name: gatsby-playbook
   hosts: ec2
   become: true
   tasks:
   - name: Installation d'apache
-    ansible.builtin.yum:
+    yum:
       name: httpd
       state: present
 
   - name: Installation du compilateur et make
-    ansible.builtin.yum:
+    yum:
       name:
         - gcc-c++
         - make
       state: present
 
   - name: Installation de node et npm
-    ansible.builtin.yum:
+    yum:
       name: nodejs
       state: present
       enablerepo: epel
 
-  - name: Création d'un répertoire
-    ansible.builtin.shell: 
-      cmd: mkdir /home/ec2-user/gatsby
-    delegate_to: 127.0.0.1
-
-  - name: Clonage du repository with separate git directory
-    ansible.builtin.git:
-      repo: https://github.com/Mohamed-Benguerraiche/gatsby-starter-default.git
-      dest: /home/ec2-user/gatsby
-    delegate_to: 127.0.0.1
-
-  - name: Création d'un répertoire
-    ansible.builtin.shell: 
-      cmd: npm install
-    delegate_to: 127.0.0.1
+- name: This command will change the working directory to somedir/
+  shell:
+    cmd: ansible-playbook gatsby-playbook.yml -i hosts.ini
+    chdir: somedir/
+  delegate_to: 127.0.0.1
+  run_once: yes
