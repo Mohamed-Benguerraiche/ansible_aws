@@ -61,8 +61,8 @@
       jid: "{{ npm_install_job.ansible_job_id }}"
     register: job_result
     until: job_result.finished
-    retries: 10  # Ajoutez le nombre de tentatives souhaité
-    delay: 10    # Ajoutez l'intervalle entre les tentatives souhaité
+    retries: 30  # Ajoutez le nombre de tentatives souhaité
+    delay: 15    # Ajoutez l'intervalle entre les tentatives souhaité
 
   - name: Afficher la sortie de npm install
     debug:
