@@ -47,15 +47,9 @@
     delegate_to: 127.0.0.1
     run_once: yes
 
-  - name: Changemebt de dossier 
+  - name: Changement de dossier Npm install
     shell: 
-      cmd: cd /home/ec2-user/gatsby
-    delegate_to: 127.0.0.1
-    run_once: yes
-
-  - name: Npm install
-    shell: 
-      cmd: npm install
+      cmd: cd /home/ec2-user/gatsby npm install
     delegate_to: 127.0.0.1
     run_once: yes
 
