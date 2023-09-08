@@ -41,8 +41,8 @@
     run_once: yes
 
   - name: Installation du projet
-      shell: 
-        cmd: npm install
-        cmd: gatsby build
+    shell: 
+      cmd: npm install
+      cmd: gatsby build
     delegate_to: 127.0.0.1
     run_once: yes
