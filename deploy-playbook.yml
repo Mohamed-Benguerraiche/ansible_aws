@@ -1,24 +1,60 @@
-- name: deploy-playbook
-- hosts: 127.0.0.1
-  connection: local
-  become: true
+- name: gatsby-playbook
+  hosts: ec2
+  become: yes
   tasks:
 
-- name: Installation de Gatsby CLI
-  npm:
-    name: gatsby-cli
-    global: yes
-
-- name: Création d'un répertoire
-  shell: 
-    cmd: mkdir /home/ec2-user/gatsby/
-
-- name: Clonage du repository with separate git directory
-  git:
-    repo: https://github.com/Mohamed-Benguerraiche/gatsby-starter-default.git
-    dest: /home/ec2-user/gatsby
-
-- name: Installation du projet
+  - name: Effacement répertoire Gatsby
     shell: 
-      cmd: npm install
+      cmd: sudo rm -rf /home/ec2-user/gatsby
+    delegate_to: 127.0.0.1
+    run_once: yes
+
+  - name: Installation d'apache
+    yum:
+      name: httpd
+      state: present
+
+  - name: Installation du compilateur et make
+    yum:
+      name:
+        - gcc-c++
+        - make
+      state: present
+
+  - name: Installation de node et npm
+    yum:
+      name: nodejs
+      state: present
+      enablerepo: epel
+
+  - name: Installation de Gatsby CLI
+    npm:
+      name: gatsby-cli
+      global: yes
+    delegate_to: 127.0.0.1
+    run_once: yes
+    
+  - name: Création d'un répertoire
+    shell: 
+      cmd: mkdir /home/ec2-user/gatsby
+    delegate_to: 127.0.0.1
+    run_once: yes
+
+  - name: Clonage du repository with separate git directory
+    git:
+      repo: https://github.com/Mohamed-Benguerraiche/gatsby-starter-default.git
+      dest: /home/ec2-user/gatsby
+    delegate_to: 127.0.0.1
+    run_once: yes
+
+  - name: Changement de dossier Npm install
+    shell: 
+      cmd: cd /home/ec2-user/gatsby && npm install
+    delegate_to: 127.0.0.1
+    run_once: yes
+
+  - name: Build du projet
+    shell: 
       cmd: gatsby build
+    delegate_to: 127.0.0.1
+    run_once: yes
