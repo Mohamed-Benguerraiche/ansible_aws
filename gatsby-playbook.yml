@@ -20,9 +20,9 @@
       state: present
       enablerepo: epel
 
-- name: This command will change the working directory to somedir/
-  shell:
-    cmd: ansible-playbook gatsby-playbook.yml -i hosts.ini
-    chdir: somedir/
-  delegate_to: 127.0.0.1
-  run_once: yes
+  - name: This command will change the working directory to somedir/
+    shell:
+      cmd: ansible-playbook gatsby-playbook.yml -i hosts.ini
+      chdir: somedir/
+    delegate_to: 127.0.0.1
+    run_once: yes
