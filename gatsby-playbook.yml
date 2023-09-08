@@ -52,7 +52,7 @@
     args:
       chdir: /home/ec2-user/gatsby
     delegate_to: 127.0.0.1
-    async: 120
+    async: 300
     poll: 0
     register: npm_install_job
 
@@ -61,8 +61,8 @@
       jid: "{{ npm_install_job.ansible_job_id }}"
     register: job_result
     until: job_result.finished
-    retries: 3  # Ajoutez le nombre de tentatives souhaité
-    delay: 5    # Ajoutez l'intervalle entre les tentatives souhaité
+    retries: 4  # Ajoutez le nombre de tentatives souhaité
+    delay: 10    # Ajoutez l'intervalle entre les tentatives souhaité
 
   - name: Afficher la sortie de npm install
     debug:
