@@ -40,15 +40,10 @@
     delegate_to: 127.0.0.1
     run_once: yes
 
-  - name: Build du projet
-    shell: 
-      cmd: chdir /home/ec2-user/gatsby/
-    delegate_to: 127.0.0.1
-    run_once: yes
-
-  - name: Installation du projet
+  - name: Npm install
     shell: 
       cmd: npm install
+      chdir: chdir /home/ec2-user/gatsby/
     delegate_to: 127.0.0.1
     run_once: yes
 
