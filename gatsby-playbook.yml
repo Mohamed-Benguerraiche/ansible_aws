@@ -3,7 +3,7 @@
   become: yes
   tasks:
 
-  - name: Effacement répertoire Gatsby
+  - name: Effacement du répertoire Gatsby
     shell: 
       cmd: sudo rm -rf /home/ec2-user/gatsby
     delegate_to: 127.0.0.1
@@ -40,26 +40,26 @@
     delegate_to: 127.0.0.1
     run_once: yes
 
-  - name: Clonage du repository with separate git directory
+  - name: Clonage du repository vers /home/ec2-user/gatsby
     git:
       repo: https://github.com/Mohamed-Benguerraiche/gatsby-starter-default.git
       dest: /home/ec2-user/gatsby
     delegate_to: 127.0.0.1
     run_once: yes
 
-  - name: Installation des dépendances avec npm
+  - name: Installation des dépendances avec npm dans /home/ec2-user/gatsby
     shell: npm install
     args:
       chdir: /home/ec2-user/gatsby
     delegate_to: 127.0.0.1
     register: npm_install_result
 
-  - name: Afficher la sortie de npm install en cas d'échec
+  - name: Affichage de la sortie de npm install
     debug:
       var: npm_install_result.stdout_lines
     when: npm_install_result.failed
 
-  - name: Build du projet
+  - name: Build du projet dans /home/ec2-user/gatsby
     shell: 
       cmd: gatsby build
     args:
