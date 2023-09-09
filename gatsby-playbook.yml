@@ -52,22 +52,12 @@
     args:
       chdir: /home/ec2-user/gatsby
     delegate_to: 127.0.0.1
-    async: 900
-    poll: 0
-    register: npm_install_job
+    register: npm_install_result
 
-  - name: Attendre la fin de l'installation npm
-    async_status:
-      jid: "{{ npm_install_job.ansible_job_id }}"
-    register: job_result
-    until: job_result.finished
-    retries: 30  # Ajoutez le nombre de tentatives souhaité
-    delay: 15    # Ajoutez l'intervalle entre les tentatives souhaité
-
-  - name: Afficher la sortie de npm install
+  - name: Afficher la sortie de npm install en cas d'échec
     debug:
-      var: job_result.stdout_lines
-    when: job_result.failed
+      var: npm_install_result.stdout_lines
+    when: npm_install_result.failed
 
   - name: Build du projet
     shell: 
